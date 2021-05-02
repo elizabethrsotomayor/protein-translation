@@ -20,12 +20,11 @@ def proteins(strand: str) -> List[str]:
     final_translation = []
 
     for protein in split_strand:
-        for key in protein_dict:
-            if protein in protein_dict[key]:
-                if protein_dict[key] == "STOP":
-                    break
-                else:
-                    final_translation.append(key)
+        for item in protein_dict:
+            if protein in protein_dict[item] and protein_dict[item] != "STOP":
+                final_translation.append(item)
+        if protein in protein_dict["STOP"]:
+            break
 
     final_translation = list(OrderedDict.fromkeys(final_translation))
 
